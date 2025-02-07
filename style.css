@@ -1,0 +1,79 @@
+main{
+    max-width: 80%;
+    margin: 0 auto;
+    font-family: Arial;
+    text-align: center;
+}
+
+section{
+    margin-top: 30px;
+}
+
+/* Clase de los títulos */
+.text{
+    font-size: 19px;
+    margin: 0px;
+}
+
+p{
+    font-size: 13px;
+}
+
+.boton{
+    padding: 10px;
+    margin: 17px 0px 0px 0px;
+    border-radius: 10px;
+    background-color: #000;
+    color: white;
+}
+
+#txFallos{
+    padding: 10px;
+    margin: 17px 0px 0px 0px;
+    font-size: 14px;
+}
+
+#denuevo{
+    display: none;
+    padding: 10px;
+    margin: 17px 0px 0px 0px;
+    border-radius: 10px;
+    background-color: #000080;
+    color: white;
+}
+
+.ramo{
+    background-color: #ea2d2d;
+    color: #001;
+    font-weight: 600;
+}
+
+.ronda{
+    background-color: #f3d342;
+    color: #001;
+    font-weight: 600;
+}
+
+.caravana{
+    background-color: #97c5e7;
+    color: #001;
+    font-weight: 600;
+}
+
+.colonia{
+    background-color: #e175aa;
+    color: #001;
+    font-weight: 600;
+}
+
+.solar{
+    background-color: #76ac87;
+    color: #001;
+    font-weight: 600;
+}
+
+.clan{
+    background-color: #7b1919;
+    color: #001;
+    font-weight: 600;
+}
