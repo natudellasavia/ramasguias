@@ -31,8 +31,10 @@ var numRama = 0;
 // Variable que va a acumular los puntos por cada error
 var fallos = 0;
 
+// --COMIENZO DE JUEGO
 ramasAleatorias();
 imprimirBotonera();
+habilitarBotones();
 
 // --OBTENER NUMERO ALEATORIO (entre 0 y max)
 function randomNum(max) {
@@ -66,10 +68,28 @@ function ramasAleatorias() {
   }
 }
 
-// --IMPRIMIR EN CONSOLA EL ARRAY ALEATORIO
+// --IMPRIMIR EN CONSOLA EL ARRAY ALEATORIO (es para controlar)
 function imprimirBotonera() {
   for (x = 0; x < 6; x++) {
     console.log(botonera[x]);
+  }
+}
+// --ACCIONES DE CLICK EN LA BOTONERA DEL JUEGO
+function clickBotonera(boton) {
+  // Me guardo como número la "pos" del botón
+  posicion = parseInt(boton.getAttribute("pos"));
+
+  if (botonera[posicion] == numRama) {
+    agregarClase(posicion, numRama);
+    numRama++; // Cada vez que hago bien click, avanza 1 rama.
+    if (numRama == 6) {
+      denuevo.style.display = "block"; // Muestro el botón que en CSS está oculto
+      deshabilitarBotones();
+      return;
+    }
+  } else {
+    botoneraEnNegro();
+    puntaje();
   }
 }
 
@@ -81,24 +101,8 @@ function reiniciarJuego(reiniciar) {
   botoneraEnNegro();
   ramasAleatorias();
   imprimirBotonera();
-  console.log("aca es ADENTRO post boton");
-}
-
-// --ACCIONES DE CLICK EN LA BOTONERA DEL JUEGO
-function clickBotonera(boton) {
-  // Me guardo como número la "pos" del botón
-  posicion = parseInt(boton.getAttribute("pos"));
-
-  if (botonera[posicion] == numRama) {
-    agregarClase(posicion, numRama);
-    numRama++; // Cada vez que hago bien click, avanza 1 rama.
-    if (numRama == 6) {
-      denuevo.style.display = "block"; // Muestro el botón que en CSS está oculto
-    }
-  } else {
-    botoneraEnNegro();
-    puntaje();
-  }
+  habilitarBotones();
+  console.log("aca es ADENTRO post boton"); // ELIMINARRRRR
 }
 
 // --CONTROL DE FALLOS POR JUEGO
@@ -119,21 +123,27 @@ function agregarClase(posicion, numRama) {
   if (posicion == 0) {
     boxZero.classList.add(claseRama);
     boxZero.innerHTML = ramas[numRama].nombre;
+    boxZero.disabled = true; //Deshabilita el botón para que no se pueda volver a apretar
   } else if (posicion == 1) {
     boxOne.classList.add(claseRama);
     boxOne.innerHTML = ramas[numRama].nombre;
+    boxOne.disabled = true;
   } else if (posicion == 2) {
     boxTwo.classList.add(claseRama);
     boxTwo.innerHTML = ramas[numRama].nombre;
+    boxTwo.disabled = true;
   } else if (posicion == 3) {
     boxThree.classList.add(claseRama);
     boxThree.innerHTML = ramas[numRama].nombre;
+    boxThree.disabled = true;
   } else if (posicion == 4) {
     boxFour.classList.add(claseRama);
     boxFour.innerHTML = ramas[numRama].nombre;
+    boxFour.disabled = true;
   } else if (posicion == 5) {
     boxFive.classList.add(claseRama);
     boxFive.innerHTML = ramas[numRama].nombre;
+    boxFive.disabled = true;
   }
 }
 
@@ -141,15 +151,14 @@ function agregarClase(posicion, numRama) {
 function botoneraEnNegro() {
   // Reinicia a 0 que es el RAMO para volver a comparar con las posiciones de la botonera
   numRama = 0;
-
+  habilitarBotones();
   boxZero.innerHTML = "?";
   boxOne.innerHTML = "?";
   boxTwo.innerHTML = "?";
   boxThree.innerHTML = "?";
   boxFour.innerHTML = "?";
   boxFive.innerHTML = "?";
-
-  //  !!!!! ARREGLAR ESTOOOO !!!!! FUNCIONA PERO ¿SE PUEDE ACHICAR?
+  /*     !!!!!-----     ESTOOOO FUNCIONA PERO ¿SE PUEDE ACHICAR?     -----!!!!!     */
   for (rec = 0; rec <= 5; rec++) {
     if (botonera[rec] == 0) {
       boxZero.classList.remove("ramo");
@@ -196,3 +205,22 @@ function botoneraEnNegro() {
     }
   }
 }
+
+function habilitarBotones() {
+  boxZero.disabled = false;
+  boxOne.disabled = false;
+  boxTwo.disabled = false;
+  boxThree.disabled = false;
+  boxFour.disabled = false;
+  boxFive.disabled = false;
+}
+
+function deshabilitarBotones() {
+  boxZero.disabled = true;
+  boxOne.disabled = true;
+  boxTwo.disabled = true;
+  boxThree.disabled = true;
+  boxFour.disabled = true;
+  boxFive.disabled = true;
+}
+
