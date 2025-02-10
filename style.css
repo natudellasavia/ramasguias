@@ -25,6 +25,13 @@ p{
     border-radius: 10px;
     background-color: #000;
     color: white;
+    border: 0px solid #000; /* Saca el borde por defecto del botón */
+}
+
+.btn-block{
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
 }
 
 #txFallos{
